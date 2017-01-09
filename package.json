@@ -1,0 +1,23 @@
+{
+  "name": "reactfromscratch",
+  "version": "1.0.0",
+  "description": "Creating JS Stack From Scratch",
+  "main": "index.js",
+  "author": "Michael Schennum",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-latest": "^6.16.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  }
+}
