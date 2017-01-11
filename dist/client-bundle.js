@@ -72,10 +72,23 @@
 	
 	var _barkButton2 = _interopRequireDefault(_barkButton);
 	
+	var _catReducer = __webpack_require__(674);
+	
+	var _catReducer2 = _interopRequireDefault(_catReducer);
+	
+	var _meowMessage = __webpack_require__(676);
+	
+	var _meowMessage2 = _interopRequireDefault(_meowMessage);
+	
+	var _meowButton = __webpack_require__(677);
+	
+	var _meowButton2 = _interopRequireDefault(_meowButton);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var store = (0, _redux.createStore)((0, _redux.combineReducers)({
-	  dog: _dogReducer2.default
+	  dog: _dogReducer2.default,
+	  cat: _catReducer2.default
 	}));
 	
 	_reactDom2.default.render(_react2.default.createElement(
@@ -85,7 +98,9 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(_barkMessage2.default, null),
-	    _react2.default.createElement(_barkButton2.default, null)
+	    _react2.default.createElement(_barkButton2.default, null),
+	    _react2.default.createElement(_meowMessage2.default, null),
+	    _react2.default.createElement(_meowButton2.default, null)
 	  )
 	), document.querySelector('.app'));
 
@@ -42156,7 +42171,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    message: state.dog.get('hasBarked') ? 'The dog barked' : 'The dog did not bark'
+	    message: state.dog.get('hasBarked') ? 'The dog has barked!' : 'The dog did not bark!'
 	  };
 	};
 	
@@ -42256,6 +42271,117 @@
 	};
 	
 	exports.default = Button;
+
+/***/ },
+/* 674 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _immutable = __webpack_require__(513);
+	
+	var _immutable2 = _interopRequireDefault(_immutable);
+	
+	var _catActions = __webpack_require__(675);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = _immutable2.default.Map({
+	  hasMeowed: false
+	});
+	
+	var catReducer = function catReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _catActions.MAKE_MEOW:
+	      return state.set('hasMeowed', action.payload);
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = catReducer;
+
+/***/ },
+/* 675 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.makeMeow = exports.MAKE_MEOW = undefined;
+	
+	var _reduxActions = __webpack_require__(515);
+	
+	var MAKE_MEOW = exports.MAKE_MEOW = 'MAKE_MEOW';
+	var makeMeow = exports.makeMeow = (0, _reduxActions.createAction)(MAKE_MEOW, function () {
+	  return true;
+	});
+
+/***/ },
+/* 676 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(495);
+	
+	var _message = __webpack_require__(671);
+	
+	var _message2 = _interopRequireDefault(_message);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    message: state.cat.get('hasMeowed') ? 'The cat meowed' : 'The cat did not meow'
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_message2.default);
+
+/***/ },
+/* 677 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(495);
+	
+	var _button = __webpack_require__(673);
+	
+	var _button2 = _interopRequireDefault(_button);
+	
+	var _catActions = __webpack_require__(675);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    action: function action() {
+	      dispatch((0, _catActions.makeMeow)());
+	    },
+	    actionLabel: 'Meow'
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_button2.default);
 
 /***/ }
 /******/ ]);
